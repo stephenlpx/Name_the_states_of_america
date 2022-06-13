@@ -10,14 +10,16 @@ turtle.shape(image)
 data = pandas.read_csv("50_states.csv")
 state_name = data.state.to_list()
 
-is_on = True
+guessed_states = []
+
 score = 0
 
-while is_on:
+while len(guessed_states) < 50:
 
     answer_state = screen.textinput(title=f"Guess the state{score}/50", prompt="What is your answer?: ").title()
 
-    if answer_state in state_name:
+    if answer_state in state_name and answer_state not in guessed_states:
+        guessed_states.append(answer_state)
         print("True")
         t = turtle.Turtle()
         t.hideturtle()
