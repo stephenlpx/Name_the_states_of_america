@@ -19,11 +19,8 @@ while len(guessed_states) < 50:
     answer_state = screen.textinput(title=f"Guess the state{score}/50", prompt="What is your answer?: ").title()
     # creates a list of all the states that the user failed to enter
     if answer_state == "Exit":
-        states_to_learn = []
-        for state in state_name:
-            if state not in guessed_states:
-                states_to_learn.append(state)
-        # create a new dataframe to write the list to a new file
+        #use list comprehension to shorten the code
+        states_to_learn = [state for state in state_name if state not in guessed_states]
         df = pandas.DataFrame(states_to_learn)
         df.to_csv("states_to_learn.csv")
         break
